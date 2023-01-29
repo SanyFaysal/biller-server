@@ -5,38 +5,37 @@ const express = require('express');
 // const { verifyToken } = require('../middleware/verifyToken');
 const router = express.Router();
 
-router
-  .route('/billing-list')
-  .get(jobController.getJobs)
-  .post(authorization('hiring-manager'), jobController.createJob);
+router.route('/billing-list').get(jobController.getJobs);
 
-router
-  .route('/jobs/:id/apply')
-  .post(
-    verifyToken,
-    authorization('candidate'),
-    checkApplyExpire,
-    jobController.applyJob
-  );
+router.route('/add-billing').post(jobController.getJobs);
 
-router
-  .route('/manager/jobs')
-  .get(
-    verifyToken,
-    authorization('hiring-manager'),
-    jobController.getManagerJob
-  );
-router
-  .route('/manager/jobs/:id')
-  .get(
-    verifyToken,
-    authorization('hiring-manager'),
-    jobController.getManagerJobById
-  );
+// router
+//   .route('/jobs/:id/apply')
+//   .post(
+//     verifyToken,
+//     authorization('candidate'),
+//     checkApplyExpire,
+//     jobController.applyJob
+//   );
 
-router
-  .route('/jobs/:id')
-  .get(verifyToken, authorization('candidate'), jobController.getJobById)
-  .patch(verifyToken, authorization('hiring-manager'), jobController.updateJob);
+// router
+//   .route('/manager/jobs')
+//   .get(
+//     verifyToken,
+//     authorization('hiring-manager'),
+//     jobController.getManagerJob
+//   );
+// router
+//   .route('/manager/jobs/:id')
+//   .get(
+//     verifyToken,
+//     authorization('hiring-manager'),
+//     jobController.getManagerJobById
+//   );
+
+// router
+//   .route('/jobs/:id')
+//   .get(verifyToken, authorization('candidate'), jobController.getJobById)
+//   .patch(verifyToken, authorization('hiring-manager'), jobController.updateJob);
 
 module.exports = router;

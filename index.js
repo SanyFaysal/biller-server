@@ -9,7 +9,7 @@ try {
   mongoose.connect(
     process.env.DATABASE,
     { useNewUrlParser: true, useUnifiedTopology: true },
-    () => console.log(` Mongoose is connected`.blue.bold)
+    () => console.log(`Mongoose is connected`.blue.bold)
   );
 } catch (e) {
   console.log(`could not connect`.red.bold);

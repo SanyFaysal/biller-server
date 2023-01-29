@@ -11,10 +11,10 @@ exports.createJobService = async (data, hiringManager) => {
   const result = await Job.create(data);
   return { result };
 };
-exports.getJobByIdService = async (id) => {
-  const result = await Job.find({ _id: id })
-    .populate('postedBy.id')
-    .populate('applicants');
+exports.getBillingService = async (id) => {
+  const result = await Job.find({ _id: id });
+  // .populate('postedBy.id')
+  // .populate('applicants');
   return result;
 };
 exports.getJobsService = async (filter, sortJob) => {
