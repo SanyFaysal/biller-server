@@ -4,10 +4,6 @@ const colors = require('colors');
 
 const app = require('./app');
 
-// mongoose.connect(process.env.DATABASE).then(() => {
-//   console.log(`Database is connected successfuly`.blue.bold);
-// });
-
 try {
   // Connect to the MongoDB cluster
   mongoose.connect(
