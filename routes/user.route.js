@@ -1,27 +1,16 @@
 const express = require('express');
-const userController = require('../controller/user.controller');
-const { authorization } = require('../middleware/authorization');
+const {
+  signup,
+  findUserByEmail,
+  getMe,
+} = require('../controller/user.controller');
 const { verifyToken } = require('../middleware/verifyToken');
+const { route } = require('./billing.route');
+
 const router = express.Router();
 
-router.post('/signup', userController.signup);
-router.post('/login', userController.findUserByEmail);
-router.get('/me', verifyToken, userController.getMe);
-
-router
-  .route('/candidate/:id')
-  .patch(
-    verifyToken,
-    authorization('admin'),
-    userController.updateCandidateRole
-  );
-
-router
-  .route('/:role/:id')
-  .get(verifyToken, authorization('admin'), userController.getUserDetailsById);
-
-router
-  .route('/:role')
-  .get(verifyToken, authorization('admin'), userController.getUsers);
+router.post('/registration', signup);
+router.post('/login', findUserByEmail);
+router.get('/me', verifyToken, getMe);
 
 module.exports = router;

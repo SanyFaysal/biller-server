@@ -4,7 +4,14 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const billingSchema = mongoose.Schema(
   {
-    fullName: {
+    firstName: {
+      type: String,
+      required: [true, 'Please provide a name'],
+      trim: true,
+      lowercase: true,
+      minLength: [3, 'Name is too small'],
+    },
+    lastName: {
       type: String,
       required: [true, 'Please provide a name'],
       trim: true,
@@ -17,7 +24,7 @@ const billingSchema = mongoose.Schema(
       lowercase: true,
       validate: [validator.isEmail, 'Please provide a valid email'],
     },
-    phone: {
+    phoneNumber: {
       type: String,
       required: [true, 'Please provide a contact number'],
       validate: [
@@ -26,9 +33,13 @@ const billingSchema = mongoose.Schema(
       ],
     },
 
-    billAmount: {
+    billingAmount: {
       type: Number,
-      required: [true, 'Please provide compensation'],
+      required: [true, 'Please provide billing amount'],
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now(),
     },
   },
   {
